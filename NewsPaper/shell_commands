@@ -1,0 +1,91 @@
+u1=User.objects.create_user('Сергей')
+u2=User.objects.create_user('Виктор')
+
+a1=Author.objects.create(author=u1)
+a2=Author.objects.create(author=u2)
+
+cat1=Category.objects.create(category_name='Политика')
+cat2=Category.objects.create(category_name='Спорт')
+cat3=Category.objects.create(category_name='Финансы')
+cat4=Category.objects.create(category_name='Игровая Индустрия')
+
+p1=Posts.objects.create(type='A', posts_author=a1, title='Заголовок', text_of_posts='Содержание статьи')
+p2=Posts.objects.create(type='A', posts_author=a1, title='Заголовок статьи 2', text_of_posts='Содержание статьи 2')
+ n1=Posts.objects.create(type='N', posts_author=a1, title='Заголовок новости', text_of_posts='Содержание новости 2')
+
+p1.category_postcat.add(cat1)
+p1.category_postcat.add(cat2)
+p2.category_postcat.add(cat3)
+p2.category_postcat.add(cat4)
+ n1.category_postcat.add(cat1)
+ n1.category_postcat.add(cat2)
+
+ Comments.objects.create(post_connect=p1, user_conkat=u1, comment_text='a')
+Comments.objects.create(post_connect=p1, user_conkat=u2, comment_text='b')
+Comments.objects.create(post_connect=p1, user_conkat=u2, comment_text='c')
+Comments.objects.create(post_connect=p1, user_conkat=u2, comment_text='d')
+Comments.objects.create(post_connect=p2, user_conkat=u1, comment_text='a')
+Comments.objects.create(post_connect=p2, user_conkat=u1, comment_text='b')
+Comments.objects.create(post_connect=p2, user_conkat=u1, comment_text='c')
+Comments.objects.create(post_connect=p2, user_conkat=u1, comment_text='d')
+Comments.objects.create(post_connect=n1, user_conkat=u2, comment_text='a')
+Comments.objects.create(post_connect=n1, user_conkat=u2, comment_text='b')
+Comments.objects.create(post_connect=n1, user_conkat=u2, comment_text='c')
+Comments.objects.create(post_connect=n1, user_conkat=u2, comment_text='d')
+
+p1=Posts.objects.get(pk=1)
+p1.like()
+p1.rating
+
+p2=Posts.objects.get(pk=2)
+p2.like()
+p2.rating
+
+n1=Posts.objects.get(pk=1)
+n1.like()
+n1.rating
+
+o1=Comments.objects.get(pk=2)
+o1.like()
+o1.comment_rating
+j=Comments.objects.get(pk=10)
+j.like()
+j.comment_rating
+y=Comments.objects.get(pk=6)
+y.like()
+y.comment_rating
+y=Comments.objects.get(pk=6)
+y.like()
+y.comment_rating
+y=Comments.objects.get(pk=6)
+y.like()
+y.comment_rating
+y=Comments.objects.get(pk=6)
+y.like()
+y.comment_rating
+r=Comments.objects.get(pk=11)
+r.like()
+r.comment_rating
+r=Comments.objects.get(pk=11)
+r.like()
+r=Comments.objects.get(pk=11)
+r.like()
+r.comment_rating
+e=Comments.objects.get(pk=12)
+e.like()
+w=Comments.objects.get(pk=3)
+w.like()
+q=Comments.objects.get(pk=4)
+q.like()
+q1=Comments.objects.get(pk=5)
+q1.like()
+w1=Comments.objects.get(pk=7)
+w1.like()
+t1=Comments.objects.get(pk=8)
+t1.like()
+y1=Comments.objects.get(pk=9)
+y1.like()
+
+Comments.objects.all().order_by('comment_rating').values('comment_make_time', 'comment_text', 'comment_rating', 'user_conkat')
+
+Posts.objects.all().order_by('rating').values('when', 'title', 'rating')
